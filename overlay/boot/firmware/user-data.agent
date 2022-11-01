@@ -1,0 +1,19 @@
+#cloud-config
+
+hostname: pi-kube-agent
+
+users:
+  - default
+  - name: pi-kube
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo, users
+    lock_passwd: true
+    ssh_import_id:
+      - gh:<GITHUB_USERNAME>
+
+runcmd:
+  - |
+    INSTALL_K3S_SKIP_DOWNLOAD=true \
+    K3S_TOKEN=SECRET=<SECRET> \
+    install-k3s \
+        --server https://pi-kube-cluster.local:6443

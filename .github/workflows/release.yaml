@@ -1,0 +1,20 @@
+name: release
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  pull-requests: write
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: simple
+          signoff: "github-release[bot] <github-release-bot@noreply.github.com>"
+          draft: true

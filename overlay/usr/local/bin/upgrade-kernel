@@ -1,0 +1,20 @@
+#! /usr/bin/env sh
+
+set -e
+
+run_dir=/var/run/upgrade-kernel
+
+if [ -f "${run_dir}/.reboot" ]; then
+	rm -f "${run_dir}/.reboot"
+fi
+
+if [ -f "${run_dir}/.done" ]; then
+	printf 'upgrade-kernel: kernel already updated; exiting...'
+	exit 0
+fi
+
+flash-kernel
+
+mkdir -p "${run_dir}"
+touch "${run_dir}/.reboot"
+touch "${run_dir}/.done"

@@ -1,0 +1,11 @@
+.*
+images/*
+
+!.github/
+!.vscode/
+
+!.gitignore
+!.dockerignore
+!.editorconfig
+
+!overlay/etc/skel/*

@@ -1,0 +1,27 @@
+#cloud-config
+
+hostname: pi-kube-cluster
+
+users:
+  - default
+  - name: pi-kube
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo, users
+    lock_passwd: true
+    ssh_import_id:
+      - gh:<GITHUB_USERNAME>
+
+ssh_pwauth: false
+
+runcmd:
+  - |
+    INSTALL_K3S_SKIP_DOWNLOAD=true \
+    K3S_TOKEN=SECRET=<SECRET> \
+    install-k3s \
+      --cluster-init \
+      --with-node-id \
+      --cluster-domain=<DOMAIN> \
+      --write-kubeconfig-mode=0644 \
+      --secrets-encryption \
+      --disable-helm-controller \
+      --disable traefik
