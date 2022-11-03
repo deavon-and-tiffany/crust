@@ -1,4 +1,4 @@
-# Crust
+# Krust
 
 > A repository used to create up-to-date images for fully automated operation of [Kubernetes (k3s)][k3s-url] on 
 > Raspberry Pis with configuration using [cloud-init][cloud-init-url].
